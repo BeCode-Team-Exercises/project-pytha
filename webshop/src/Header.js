@@ -4,7 +4,7 @@ class Header extends Component {
   render() {
     return (
       <header className="header">
-        <h1>Gameplanet</h1>
+        <h1 className="text-center">Gameplanet</h1>
         <nav className="header-nav">
           <ul>
             <li>Home</li>
