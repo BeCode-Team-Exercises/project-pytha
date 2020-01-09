@@ -1,4 +1,16 @@
-.App {
+* {
+  box-sizing: border-box;
+  border: 1px solid black;
+  /* width: 100%; */
+}
+
+.header-nav ul {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+}
+
+/* .App {
   text-align: center;
 }
 
@@ -19,6 +31,10 @@
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+} */
