@@ -12,10 +12,9 @@ class ProductCard extends Component {
         <div className="card-body">
           <h5 className="card-title">{product_info.name}</h5>
           <p className="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
+          {product_info.description}
           </p>
-          <p>{`${product_info.price} euro`}</p>
+          <p>{`${product_info.price_per_unit} euro`}</p>
           <a href="" className="btn btn-primary">
             Go somewhere
           </a>
