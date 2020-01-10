@@ -2,7 +2,6 @@
 
 include 'connection.php';
 
-
 // Class constructor to make a game object, other info is filled in database
 Class game
 {
