@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
-import "./reset.css";
-import "./bootstrap.css";
-import "./App.css";
+import "./css//reset.css";
+import "./css//bootstrap.css";
+import "./css/App.css";
 import Header from "./Header";
 import Products from "./Products";
 
@@ -15,6 +15,7 @@ class App extends Component {
         <Header />
         <body className="container-fluid">
           <Products/>
+          <a>See more products</a>
         </body>
       </div>
     );
