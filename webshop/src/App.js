@@ -1,13 +1,26 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import "./css//reset.css";
 import "./css//bootstrap.css";
 import "./css/App.css";
 import Header from "./Header";
 import Products from "./Products";
 
-
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: null
+    };
+  }
+  componentDidMount() {
+    // test to see how it goes to connect api
+    fetch(
+      "https://api.openweathermap.org/data/2.5/forecast/?q=bruges,be&appid=fac9676aa8de6252977e1a8672e861e2"
+    )
+      .then(response => response.json())
+      .then(data => this.setState({ data }))
+  }
+
   render() {
     const characters = [
       {
@@ -18,7 +31,7 @@ class App extends Component {
         developer: "developer",
         publisher: "publisher",
         platform: "pc",
-        pegi:13,
+        pegi: 13,
         stock: 10,
         active_for_sale: 1
       },
@@ -30,19 +43,19 @@ class App extends Component {
         developer: "developer",
         publisher: "publisher",
         platform: "xbox",
-        pegi:18,
-        stock: 10,        
+        pegi: 18,
+        stock: 10,
         active_for_sale: 1
       },
       {
         name: "pacman",
-        price_per_unit: 33.99, 
+        price_per_unit: 33.99,
         tax_percentage: 21,
         description: "platform game",
         developer: "developer",
         publisher: "publisher",
         platform: "pc",
-        pegi:4,
+        pegi: 4,
         stock: 10,
         active_for_sale: 1
       },
@@ -54,23 +67,24 @@ class App extends Component {
         developer: "developer",
         publisher: "publisher",
         platform: "gameboy",
-        pegi:0,
+        pegi: 0,
         stock: 10,
         active_for_sale: 1
       }
-    ]
+    ];
     return (
-      <div className="App">
+      <body className="container-fluid">
         {/* to do create head */}
         <Header />
-        <body className="container-fluid">
-          <Products characters={characters}/>
-          <a>See more products</a>
-        </body>
-      </div>
+        <Products characters={characters} />
+        <a>See more products</a>
+      </body>
     );
   }
 }
 
-
 export default App;
+
+{
+  /* note: may want to use state at products level to dynamically display type of products */
+}

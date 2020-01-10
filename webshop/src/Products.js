@@ -3,9 +3,7 @@ import ProductCard from "./ProductCard";
 import "./css/reset.css";
 import "./css/bootstrap.css";
 import "./css/App.css";
-{
-  /* note: may want to use state at products level to dynamically display type of products */
-}
+
 class Products extends Component {
   render() {
     const { characters } = this.props;
@@ -17,8 +15,7 @@ class Products extends Component {
             <td>{row.name}</td>
             <td>{row.price}</td>
           </tr> */
-            <ProductCard product_info={row}/>
-
+            <ProductCard key={index} product_info={row}/>
         );
       });
 
