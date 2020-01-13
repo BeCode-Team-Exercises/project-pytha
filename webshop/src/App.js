@@ -8,10 +8,12 @@ import Products from "./Products";
 class App extends Component {
   constructor(props) {
     super(props);
+        // to do: change stock to original stock of object and maybe even
     this.state = {
-      data: null
+      stock: 10
     };
   }
+  
   componentDidMount() {
     // test to see how it goes to connect api
     fetch(
@@ -22,6 +24,7 @@ class App extends Component {
   }
 
   render() {
+    // note: will need to change this. Tried to preconfigure code before having actual db-connection on the basis of database names. But will still need to handle images (not currently foreseen in db)
     const characters = [
       {
         name: "diablo",
