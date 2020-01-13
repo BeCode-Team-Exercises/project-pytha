@@ -5,15 +5,18 @@ $isAllowed = ['192.168.139.192' => 'jasper', '192.168.139.177' => 'reinaert', '1
 $clientIP = $_SERVER['REMOTE_ADDR'];
 // check if user is allowed and execute code if allowed
 if (array_key_exists($clientIP, $isAllowed)) {
-    if (array_key_exists('password', $_POST)) {
-        if (!$_POST['password'] == '') {
-            echo $_POST['password'];
-
+    if (array_key_exists('pass', $_POST)) {
+        if (!$_POST['pass'] == '') {
+            // check user
+            $user = $_POST['user'];
             $pdo = new PDO('mysql:host=192.168.139.125;dbname=api;port=3306', 'user', 'pythauser');
-            $test = $pdo->query("SELECT id, `user`, pass FROM api.login WHERE id=1;");
-            if ($test->rowCount() > 0) {
-                while ($row = $test->fetch(PDO::FETCH_ASSOC)) {
-                    var_dump($row);
+            $connection = $pdo->query("SELECT id, `user`, pass FROM api.login WHERE user='$user';");
+            // check user database password hash
+            while ($row = $connection->fetch(PDO::FETCH_ASSOC)) {
+                if (password_verify($_POST['pass'], $row['pass'])) {
+                    echo 'yay';
+                } else {
+                    echo 'whoops wrong password!';
                 }
             }
 
