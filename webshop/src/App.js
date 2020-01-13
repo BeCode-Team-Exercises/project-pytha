@@ -6,21 +6,14 @@ import Header from "./Header";
 import Products from "./Products";
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-        // to do: change stock to original stock of object and maybe even
-    this.state = {
-      stock: 10
-    };
-  }
-  
   componentDidMount() {
-    // test to see how it goes to connect api
     fetch(
-      "https://api.openweathermap.org/data/2.5/forecast/?q=bruges,be&appid=fac9676aa8de6252977e1a8672e861e2"
+      "http://project-pytha.local/webshop/api/product/read.php"
     )
       .then(response => response.json())
-      .then(data => this.setState({ data }))
+      .then(data => console.log(data))
+      // .then(data => this.setState({ data }))
+
   }
 
   render() {
