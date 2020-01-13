@@ -2,9 +2,6 @@
 // Creates connection with GamePlanet database
 $GamePlanet = new videogames;
 
-// $GamePlanet->insert($game);
-
-
 // Games to add!
 $diablo2 = createPlatforms("diablo2","Diablo 2", "20", "Blizzard Entertainment", "Blizzard San Francisco", "7" ,"13", "3348542160316", "10", "Diablo, the Lord of Terror, has fallen to a brave hero beneath the church of Tristram. Now that hero is gone, replaced by a Dark Wanderer who roams the world of Sanctuary leaving death and destruction in his wake. As a hero of humanity, you must face the minions of Diablo's evil brothers and stop the Dark Wanderer before he fulfills his terrible destiny.");
 foreach ($diablo2 as $game) {
@@ -28,25 +25,21 @@ foreach ($bf5 as $game) {
     $GamePlanet->insert($game);
 }
 
-
-function insert($product)
-{
-
-
-    $sql = "INSERT INTO GamePlanetProducts(name,price_per_unit,developer,publisher,platform,pegi,ean, stock, description) VALUES (:name, :price_per_unit, :developer, :publisher, :platform, :pegi, :ean, :stock, :description)";
-    $stmt = $this->connection->prepare($sql);
-    $stmt->bindValue(':name', $product->name);
-    $stmt->bindValue(':price_per_unit', $product->price);
-    $stmt->bindValue(':developer', $product->developer);
-    $stmt->bindValue(':publisher', $product->publisher);
-    $stmt->bindValue(':platform', $product->platform);
-    $stmt->bindValue(':pegi', "13");
-    $stmt->bindValue(':ean', $product->ean);
-    $stmt->bindValue(':stock', $product->stock);
-    $stmt->bindValue(':description', $product->description);
-    $stmt->execute();
-}
-
+// function insert($product)
+// {
+//     $sql = "INSERT INTO GamePlanetProducts(name,price_per_unit,developer,publisher,platform,pegi,ean, stock, description) VALUES (:name, :price_per_unit, :developer, :publisher, :platform, :pegi, :ean, :stock, :description)";
+//     $stmt = $this->connection->prepare($sql);
+//     $stmt->bindValue(':name', $product->name);
+//     $stmt->bindValue(':price_per_unit', $product->price);
+//     $stmt->bindValue(':developer', $product->developer);
+//     $stmt->bindValue(':publisher', $product->publisher);
+//     $stmt->bindValue(':platform', $product->platform);
+//     $stmt->bindValue(':pegi', "13");
+//     $stmt->bindValue(':ean', $product->ean);
+//     $stmt->bindValue(':stock', $product->stock);
+//     $stmt->bindValue(':description', $product->description);
+//     $stmt->execute();
+// }
 
 // Use the function if you want to make games for multiple platforms, you will be returned an array of game classes
 // $platforms (1:PC, 2:XboxOne, 3:PS4, 4:NS, 5:X1 and PS4, 6:X1 and PS4 and NS, 7:all platform, 8:PC and X1, 9:PC and PS)
@@ -152,10 +145,16 @@ class videogames extends webshopdatabase
 class webshopdatabase
 {
     //properties
-    private static $dbHost = "localhost";
-    private static $dbName = "api_db";
-    private static $dbUser = "root";
-    private static $dbPass = "StrongPassword";
+    private static $dbHost = "192.168.139.125";
+    private static $dbName = "webshops";
+    private static $dbUser = "user";
+    private static $dbPass = "pythauser";
+
+
+    // private static $dbName = "api_db";
+    // private static $dbUser = "root";
+    // private static $dbPass = "StrongPassword";
+    // private static $dbHost = "localhost";
     private static $sharedPDO;
     protected $PDO;
     //constructor

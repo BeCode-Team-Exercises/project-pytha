@@ -2,10 +2,16 @@
 
 class Database
 {
-    private $dbHost = "localhost";
-    private $dbName = "api_db";
-    private $dbUser = "root";
-    private $dbPass = "StrongPassword";
+    private $dbHost = "192.168.139.125";
+    private $dbName = "webshops";
+    private $dbUser = "user";
+    private $dbPass = "pythauser";
+
+    // Reinaert's Test DB
+    // private $dbHost = "localhost";
+    // private $dbName = "api_db";
+    // private $dbUser = "root";
+    // private $dbPass = "StrongPassword";
     public $connection;
 
     public function getConnection(){
