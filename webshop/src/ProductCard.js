@@ -28,8 +28,8 @@ class ProductCard extends Component {
     const { product_info } = this.props;
 
     const actual_price =
-      product_info.price_per_unit +
-      product_info.price_per_unit * (product_info.tax_percentage / 100);
+      parseInt(product_info.price_per_unit) + (
+        parseInt(product_info.price_per_unit) * (parseInt(product_info.tax_percentage) / 100));
 
     return (
       <div className="card col-md-3">

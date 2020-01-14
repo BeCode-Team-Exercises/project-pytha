@@ -6,10 +6,11 @@ import "./css/App.css";
 
 class Products extends Component {
   render() {
-    const { characters } = this.props;
+    const { products } = this.props;
 
     const Product = props => {
-      const rows = characters.map((row, index) => {
+      const rows = products.map((row, index) => {
+        console.log(row.platform)
         return (
 /*           <tr key={index}>
             <td>{row.name}</td>

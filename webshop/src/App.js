@@ -6,19 +6,25 @@ import Header from "./Header";
 import Products from "./Products";
 
 class App extends Component {
-  componentDidMount() {
-    fetch(
-      "http://project-pytha.local/webshop/api/product/read.php"
-    )
-      .then(response => response.json())
-      .then(data => console.log(data))
-      // .then(data => this.setState({ data }))
-
+    // unable to add array to variable. However, able to add to state (what I don't prefer). No such method for props found thus far. Can add to state first, then pass to props and back again if needed?
+   constructor(props) {
+    super(props);
+    this.state = {
+      products_array : [
+      ]
+    };
   }
+ componentDidMount() {
+    fetch("http://project-pytha.local/webshop/api/product/read.php")
+      .then(response => response.json())
+      .then(data => data.records)
+      //.then(data => console.log(data));
+      .then(products_array => this.setState({ products_array }));
+    } 
 
   render() {
-    // note: will need to change this. Tried to preconfigure code before having actual db-connection on the basis of database names. But will still need to handle images (not currently foreseen in db)
-    const characters = [
+/*     // note: will need to change this. Tried to preconfigure code before having actual db-connection on the basis of database names. But will still need to handle images (not currently foreseen in db)
+    const products2 = [
       {
         name: "diablo",
         price_per_unit: 1000,
@@ -68,12 +74,38 @@ class App extends Component {
         active_for_sale: 1
       }
     ];
+
+    // I can pass array to products this way
+    this.props = products2;
+    console.log(products2);
+    const products = this.props; */
+
+    /* trying to add something to props 
+    function Welcome(props) {
+      return <h1>Hello, {props.name}</h1>;
+    }
+    
+    function Test() {
+      return (
+        <div>
+          <Welcome name="Sara" />
+        </div>
+      );
+    } */
+
+
+/* function Testje (props) {
+  const { propstestjeconst } = props.propstestje;
+  return <p> { propstestjeconst }</p>;
+}
+ */
     return (
       <body className="container-fluid">
         {/* to do create head */}
         <Header />
-        <Products characters={characters} />
-        <a>See more products</a>
+        <Products products={this.state.products_array}/>
+{/*         <Testje propstestje="abc"/>
+ */}        <a>See more products</a>
       </body>
     );
   }
