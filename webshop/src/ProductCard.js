@@ -39,10 +39,10 @@ class ProductCard extends Component {
           <p className="card-text">{product_info.description}</p>
           <p>{`in stock: ${product_info.stock}`}</p>
           <p>{`${actual_price} euro`}</p>
-          <a href="" className="btn btn-primary">
-            Go somewhere
-          </a>
-          <input type="button" value="Submit" onClick={this.handleChange} />
+{/*           <a href="" className="btn btn-primary">
+            TO DO: MORE INFO POP-UP
+          </a> */}
+          <input className="btn btn-info" type="button" value="Submit" onClick={this.handleChange} />
         </div>
       </div>
     );
