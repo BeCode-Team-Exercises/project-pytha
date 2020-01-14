@@ -23,7 +23,6 @@ $data = json_decode(file_get_contents("php://input"));
 if(
     !empty($data->name)&&
     !empty($data->price_per_unit)&&
-    !empty($data->tax_percentage)&&
     !empty($data->developer)&&
     !empty($data->publisher)&&
     !empty($data->platform)&&
@@ -32,26 +31,49 @@ if(
     !empty($data->stock)&&
     !empty($data->description)
 ){
-    $product->name = $data->name;
-    $product->price_per_unit = $data->price_per_unit;
-    $product->tax_percentage = $data->tax_percentage;
-    $product->developer = $data->developer;
-    $product->publisher = $data->publisher;
-    $product->platform = $data->platform;
-    $product->pegi = $data->pegi;
-    $product->ean = $data->ean;
-    $product->stock = $data->stock;
-    $product->description = $data->description;
+    $gamePlanet->name = $data->name;
+    $gamePlanet->price_per_unit = $data->price_per_unit;
+    $gamePlanet->developer = $data->developer;
+    $gamePlanet->publisher = $data->publisher;
+    $gamePlanet->platform = $data->platform;
+    $gamePlanet->pegi = $data->pegi;
+    $gamePlanet->ean = $data->ean;
+    $gamePlanet->stock = $data->stock;
+    $gamePlanet->description = $data->description;
 
-    if($product->create()){
+    if($gamePlanet->create()){
         // Response code CREATED
       http_response_code(201);
         // Reply message
         echo json_encode(array("message"=>"Product was created!"));
     }else{
-        // Response code Service unavailable
+        // Response code SERVICE UNAVAILABLE
         http_response_code(503);
         // Reply message
-        echo json_encode(array("Unable to create product."));
+        echo json_encode(array("message"=>"Unable to create product."));
     }
 }
+
+else{
+    // Response code BAD REQUEST
+    http_response_code(400);
+    // Reply message
+    echo json_encode(array("message"=>"Unable to create product. Data is incomplete!"));
+}
+
+
+// API BODY RAW INPUT
+// {
+//     "name" : "Jasper's Crazy Adventures",
+//     "price_per_unit" : "59",
+//     "publisher" : "Dysfunctional Analyzers!",
+//     "developer" : "Hobo's In Space!",
+//     "platform" : "PC",
+//     "pegi" : "18",
+//     "ean" : "0000000000000",
+//     "stock" : "5",
+//     "description" : "Go on a crazy adventure with Jasper the Jack of All Spades! Beat the crazy Klingon Adel, and his superiors, Captain Nijst, Confuzing Janzo, and Supreme Leader Reinaert!"
+// }
+
+
+?>
