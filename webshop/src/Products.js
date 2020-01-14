@@ -10,23 +10,25 @@ class Products extends Component {
 
     const Product = props => {
       const rows = products.map((row, index) => {
-        console.log(row.platform)
-        return (
-/*           <tr key={index}>
+        console.log(row.platform);
+        if (row.platform == "PC") {
+          return (
+            /*           <tr key={index}>
             <td>{row.name}</td>
             <td>{row.price}</td>
           </tr> */
-            <ProductCard key={index} product_info={row}/>
-        );
+            <ProductCard key={index} product_info={row} />
+          );
+        }
       });
 
-      return rows
+      return rows;
     };
 
     return (
       <article className="row">
         {/* note: probably a foreach loop needed with a backstop if there are too many elements to render. Waiting for API-connection*/}
-          <Product/>
+        <Product />
       </article>
     );
   }
