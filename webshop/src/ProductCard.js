@@ -3,7 +3,11 @@ import "./css/reset.css";
 import "./css/bootstrap.css";
 import "./css/App.css";
 
+const variabeleBuitenKlasse = "variabele buiten klasse";
+
 class ProductCard extends Component {
+  variabeleBinnenKlasse = "variabele binnen klasse";
+
   constructor(props) {
     super(props);
     // to do: change stock to original stock of object.
@@ -24,6 +28,46 @@ class ProductCard extends Component {
     }));
   };
 
+  logvariabeleBuitenKlasseArrow = () => {
+    console.log(variabeleBuitenKlasse);
+    const logvariabeleBuitenKlasseArrow2 = () => {
+      console.log(
+        `tweede niveau, buiten variabele, arrow functie: ${variabeleBuitenKlasse}`
+      );
+    };
+    logvariabeleBuitenKlasseArrow2();
+  };
+
+  logvariabeleBuitenKlasseRegular = function() {
+    console.log(variabeleBuitenKlasse);
+    const logvariabeleBuitenKlasseRegular2 = function() {
+      console.log(
+        `tweede niveau, buiten variabele, regular functie: ${variabeleBuitenKlasse}`
+      );
+    };
+    logvariabeleBuitenKlasseRegular2();
+  };
+
+  logvariabeleBinnenKlasseArrow = () => {
+    console.log(this.variabeleBinnenKlasse);
+    const logvariabeleBinnenKlasseArrow2 = () => {
+      console.log(
+        `tweede niveau, binnen variabele, arrow functie: ${this.variabeleBinnenKlasse}`
+      );
+    };
+    logvariabeleBinnenKlasseArrow2();
+  };
+
+  logvariabeleBinnenKlasseRegular = function() {
+    console.log(this.variabeleBinnenKlasse);
+    const constlogvariabeleBinnenKlasseRegular2 = function() {
+      console.log(
+        `tweede niveau, binnen variabele, regular functie: ${this.variabeleBinnenKlasse}`
+      );
+    };
+    constlogvariabeleBinnenKlasseRegular2();
+  };
+
   render() {
     const { product_info } = this.props;
 
@@ -35,14 +79,21 @@ class ProductCard extends Component {
     return (
       // note: had problems setting equal boxes with bootsstrap. Class overflow-hidden did not work as expected and set inline-styles here
       // to do: figure out styling in a more elegant manner
-      <div className="col-md-3 text-center" style={{height: "40rem"}}>
-        <div className="card" style={{height: "90%"}}>
-          <img className="card-img-top" alt="" style={{height: "25%"}}/>
-          <div className="card-body" style={{height: "75%"}}>
-            <h5 className="card-title" style={{height: "10%"}}>{product_info.name}</h5>
-            <p className="card-text" style={{height: "50%", maxHeight: "100%", overflow: "scroll"}}>{product_info.description}</p>
-            <p style={{height: "5%"}}>{`in stock: ${product_info.stock}`}</p>
-            <p style={{height: "5%"}}>{`${actual_price} euro`}</p>
+      <div className="col-md-3 text-center" style={{ height: "40rem" }}>
+        <div className="card" style={{ height: "90%" }}>
+          <img className="card-img-top" alt="" style={{ height: "25%" }} />
+          <div className="card-body" style={{ height: "75%" }}>
+            <h5 className="card-title" style={{ height: "10%" }}>
+              {product_info.name}
+            </h5>
+            <p
+              className="card-text"
+              style={{ height: "50%", maxHeight: "100%", overflow: "scroll" }}
+            >
+              {product_info.description}
+            </p>
+            <p style={{ height: "5%" }}>{`in stock: ${product_info.stock}`}</p>
+            <p style={{ height: "5%" }}>{`${actual_price} euro`}</p>
             {/*           <a href="" className="btn btn-primary">
             TO DO: MORE INFO POP-UP
           </a> */}
@@ -51,8 +102,11 @@ class ProductCard extends Component {
               type="button"
               value="Submit"
               onClick={this.handleChange}
-              style={{height: "15%", marginBottom: "15%"}}
+              style={{ height: "15%", marginBottom: "15%" }}
             />
+            {this.logvariabeleBinnenKlasseRegular()}
+            {/*             {console.log(this.variabeleBinnenKlasse)}
+             */}{" "}
           </div>
         </div>
       </div>
