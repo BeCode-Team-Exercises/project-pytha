@@ -33,14 +33,16 @@ class ProductCard extends Component {
         (parseInt(product_info.tax_percentage) / 100);
 
     return (
-      <div className="col-md-3 overflow-hidden">
-      <div className="card p-1">
-          <img className="card-img-top" alt="" />
-          <div className="card-body">
-            <h5 className="card-title">{product_info.name}</h5>
-            <p className="card-text">{product_info.description}</p>
-            <p>{`in stock: ${product_info.stock}`}</p>
-            <p>{`${actual_price} euro`}</p>
+      // note: had problems setting equal boxes with bootsstrap. Class overflow-hidden did not work as expected and set inline-styles here
+      // to do: figure out styling in a more elegant manner
+      <div className="col-md-3 text-center" style={{height: "40rem"}}>
+        <div className="card" style={{height: "90%"}}>
+          <img className="card-img-top" alt="" style={{height: "25%"}}/>
+          <div className="card-body" style={{height: "75%"}}>
+            <h5 className="card-title" style={{height: "10%"}}>{product_info.name}</h5>
+            <p className="card-text" style={{height: "50%", maxHeight: "100%", overflow: "scroll"}}>{product_info.description}</p>
+            <p style={{height: "5%"}}>{`in stock: ${product_info.stock}`}</p>
+            <p style={{height: "5%"}}>{`${actual_price} euro`}</p>
             {/*           <a href="" className="btn btn-primary">
             TO DO: MORE INFO POP-UP
           </a> */}
@@ -49,6 +51,7 @@ class ProductCard extends Component {
               type="button"
               value="Submit"
               onClick={this.handleChange}
+              style={{height: "15%", marginBottom: "15%"}}
             />
           </div>
         </div>

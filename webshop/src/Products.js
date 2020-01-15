@@ -48,14 +48,14 @@ class Products extends Component {
 
     return (
       <React.Fragment>
-        <div className="row text-center">
+        <div className="row text-center h-100 mh-100">
           <h2 className="w-100">Products for platform X (NEED TO UPDATE THIS: move state, move data up?)</h2>
         </div>
-        <article className="row p-1">
+        <article className="row p-1 h-100 mh-100">
           {/* note: probably a foreach loop needed with a backstop if there are too many elements to render. Waiting for API-connection*/}
           <Product />
         </article>
-        <div className="row text-center platform_buttons">
+        <div className="row text-center platform_buttons h-100 mh-100">
           <input
             className="btn btn-info pl-5 pr-5"
             type="button"

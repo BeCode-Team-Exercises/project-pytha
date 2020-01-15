@@ -100,7 +100,7 @@ class App extends Component {
 }
  */
     return (
-      <body className="container-fluid">
+      <body className="container-fluid h-100 mh-100">
         {/* to do create head */}
         <Header />
         <Products products={this.state.products_array}/>

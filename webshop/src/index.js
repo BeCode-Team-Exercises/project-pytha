@@ -2,6 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import './css/index.css';
+import "./css/reset.css";
+import "./css/bootstrap.css";
+import "./css/App.css";
 
 ReactDOM.render(
   <App/>,
