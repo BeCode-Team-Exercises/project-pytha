@@ -28,21 +28,29 @@ class ProductCard extends Component {
     const { product_info } = this.props;
 
     const actual_price =
-      parseInt(product_info.price_per_unit) + (
-        parseInt(product_info.price_per_unit) * (parseInt(product_info.tax_percentage) / 100));
+      parseInt(product_info.price_per_unit) +
+      parseInt(product_info.price_per_unit) *
+        (parseInt(product_info.tax_percentage) / 100);
 
     return (
-      <div className="card col-md-3">
-        <img className="card-img-top" alt="" />
-        <div className="card-body">
-          <h5 className="card-title">{product_info.name}</h5>
-          <p className="card-text">{product_info.description}</p>
-          <p>{`in stock: ${product_info.stock}`}</p>
-          <p>{`${actual_price} euro`}</p>
-{/*           <a href="" className="btn btn-primary">
+      <div className="col-md-3 overflow-hidden">
+      <div className="card p-1">
+          <img className="card-img-top" alt="" />
+          <div className="card-body">
+            <h5 className="card-title">{product_info.name}</h5>
+            <p className="card-text">{product_info.description}</p>
+            <p>{`in stock: ${product_info.stock}`}</p>
+            <p>{`${actual_price} euro`}</p>
+            {/*           <a href="" className="btn btn-primary">
             TO DO: MORE INFO POP-UP
           </a> */}
-          <input className="btn btn-info" type="button" value="Submit" onClick={this.handleChange} />
+            <input
+              className="btn btn-info"
+              type="button"
+              value="Submit"
+              onClick={this.handleChange}
+            />
+          </div>
         </div>
       </div>
     );

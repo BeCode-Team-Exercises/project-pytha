@@ -47,30 +47,35 @@ class Products extends Component {
     };
 
     return (
-      <div className="row text-center platform_buttons">
-        <input
-          className="btn btn-info"
-          type="button"
-          value="PC"
-          onClick={this.changePlatform}
-        />
-        <input
-          className="btn btn-info"
-          type="button"
-          value="Xbox One"
-          onClick={this.changePlatform}
-        />
-        <input
-          className="btn btn-info"
-          type="button"
-          value="Playstation 4"
-          onClick={this.changePlatform}
-        />
-        <article className="row">
+      <React.Fragment>
+        <div className="row text-center">
+          <h2 className="w-100">Products for platform X (NEED TO UPDATE THIS: move state, move data up?)</h2>
+        </div>
+        <article className="row p-1">
           {/* note: probably a foreach loop needed with a backstop if there are too many elements to render. Waiting for API-connection*/}
           <Product />
         </article>
-      </div>
+        <div className="row text-center platform_buttons">
+          <input
+            className="btn btn-info pl-5 pr-5"
+            type="button"
+            value="PC"
+            onClick={this.changePlatform}
+          />
+          <input
+            className="btn btn-info pl-5 pr-5"
+            type="button"
+            value="Xbox One"
+            onClick={this.changePlatform}
+          />
+          <input
+            className="btn btn-info pl-5 pr-5"
+            type="button"
+            value="Playstation 4"
+            onClick={this.changePlatform}
+          />
+        </div>
+      </React.Fragment>
     );
   }
 }
