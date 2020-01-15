@@ -62,6 +62,7 @@ class ProductCard extends Component {
     console.log(this.variabeleBinnenKlasse);
     const constlogvariabeleBinnenKlasseRegular2 = function() {
       console.log(
+        // HIER ZIT HET VERSCHIL TUSSEN ARROW EN REGULAR FUNCTIES: DIE this is niet beschibkaar in tweede niveau van regular functie (wel op het eerste)
         `tweede niveau, binnen variabele, regular functie: ${this.variabeleBinnenKlasse}`
       );
     };
