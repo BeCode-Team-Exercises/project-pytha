@@ -16,13 +16,6 @@ class Database
 
     public function getConnection(){
         $this->connection = null;
-
-        // try{
-        //     $this->connection = new PDO("mysql:host=" . self::$dbHost . ";dbname=" . self::$dbName, self::$dbUser, self::$dbPass);
-        //     $this->connection->exec("set names utf8");
-        // } catch(PDOException $exception){
-        //     echo "Error :" . $exception->getMessage();
-        // }
         try{
             $this->connection = new PDO("mysql:host=" . $this->dbHost . ";dbname=" . $this->dbName, $this->dbUser, $this->dbPass);
             $this->connection->exec("set names utf8");
