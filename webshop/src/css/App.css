@@ -10,6 +10,11 @@
   list-style: none;
 }
 
+.platform_buttons {
+display: flex;
+justify-content: space-evenly;
+}
+
 /* .App {
   text-align: center;
 }
