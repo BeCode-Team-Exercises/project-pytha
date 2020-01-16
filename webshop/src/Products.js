@@ -8,9 +8,19 @@ class Products extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      platform: "PC"
+      platform: "PC",
+      order: "test"
     };
+
+    this.handleInStockChange = this.handleInStockChange.bind(this);
+
   }
+  
+handleInStockChange(order) {
+  this.setState({
+    order: order
+  })
+}
 
   changePlatform = event => {
     //    console.log(event.target.value)
@@ -26,6 +36,12 @@ class Products extends Component {
       platform: event.value
     })); */
   };
+
+  testConfirmPurchaseButtonChangeApi = () => {
+console.log(this.state);
+console.log(this.props);
+
+  }
 
   render() {
     const { products } = this.props;
@@ -73,6 +89,14 @@ class Products extends Component {
             type="button"
             value="Playstation 4"
             onClick={this.changePlatform}
+          />
+        </div>
+        <div className="row text-center platform_buttons h-100 mh-100">
+          <input
+            className="btn btn-info pl-5 pr-5 mt-5"
+            type="button"
+            value="test confirm purchase button change api"
+            onClick={this.testConfirmPurchaseButtonChangeApi}
           />
         </div>
       </React.Fragment>
