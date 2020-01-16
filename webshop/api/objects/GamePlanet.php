@@ -84,13 +84,13 @@ class GamePlanet
             p.name, p.id, p.price_per_unit, p.basic_unit, p.tax_percentage, p.developer, p.publisher, p.platform, p.pegi, p.ean, p.stock, p.description
                  FROM 
                   " . $this->table_name . " p
-                          WHERE p.id=? LIMIT 0,1" ;
+                          WHERE p.id=? LIMIT 0,1";
 
         // Prepare query statement
         $stmt = $this->connection->prepare($query);
 
         // Bind id of product to be updated
-        $stmt->bindParam(1,$this->id);
+        $stmt->bindParam(1, $this->id);
 
         // Execute query
         $stmt->execute();
@@ -110,5 +110,80 @@ class GamePlanet
         $this->ean = $row['ean'];
         $this->stock = $row['stock'];
         $this->description = $row['description'];
+    }
+
+    function update()
+    {
+        $query = "UPDATE " .
+            $this->table_name . "
+                        SET
+                        name=:name,
+                        price_per_unit = :price_per_unit,
+                        basic_unit=:basic_unit,
+                        tax_percentage = :tax_percentage,
+                        developer = :developer,
+                        publisher = :publisher,
+                        platform = :platform,
+                        pegi = :pegi,
+                        ean = :ean,
+                        stock = :stock,
+                        description = :description
+
+                        WHERE 
+                            id = :id";
+
+        //prepare query
+        $stmt = $this->connection->prepare($query);
+
+        // Bind new values
+        $stmt->bindParam(':name', $this->name);
+        $stmt->bindParam(':price_per_unit', $this->price);
+        $stmt->bindParam(':basic_unit', $this->basic_unit);
+        $stmt->bindParam(':tax_percentage', $this->tax_percentage);
+        $stmt->bindParam(':developer', $this->developer);
+        $stmt->bindParam(':publisher', $this->publisher);
+        $stmt->bindParam(':platform', $this->platform);
+        $stmt->bindParam(':pegi', $this->pegi);
+        $stmt->bindParam(':ean', $this->ean);
+        $stmt->bindParam(':stock', $this->stock);
+        $stmt->bindParam(':description', $this->description);
+        $stmt->bindParam(':id', $this->id);
+
+        // Execute query
+        if ($stmt->execute()) {
+            return true;
+        }
+        return false;
+    }
+
+    function search($keywords)
+    {
+        // Query
+        $query = "SELECT
+        p.name, p.id, p.price_per_unit, p.basic_unit, p.tax_percentage, p.developer, p.publisher, p.platform, p.pegi, p.ean, p.stock, p.description
+       FROM 
+       " . $this->table_name . " p 
+       WHERE 
+        p.name LIKE ? OR p.description LIKE ? OR p.developer LIKE ? OR p.publisher LIKE ? p.ean LIKE ?
+        // ORDER BY p.id DESC
+        ";
+
+        // Prepare Query
+        $stmt = $this->connection->prepare($query);
+
+        // Sanitize
+        $keywords = htmlspecialchars(strip_tags($keywords));
+        $keywords = "%{$keywords}%";
+
+        // Bind
+        $stmt->bindParam(1, $keywords);
+        $stmt->bindParam(2, $keywords);
+        $stmt->bindParam(3, $keywords);
+        $stmt->bindParam(4, $keywords);
+        $stmt->bindParam(5, $keywords);
+
+        // Execute query
+        $stmt->execute();
+        return $stmt; 
     }
 }
