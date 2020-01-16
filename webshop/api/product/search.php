@@ -21,7 +21,6 @@ $keywords=isset($_GET["search"]) ? $_GET["search"] : "";
 // query products
 $stmt = $gamePlanet->search($keywords);
 $num = $stmt->rowCount();
-
 if($num>0){
     // Gameplanet product arrays
     $products_arr = array();

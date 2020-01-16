@@ -159,28 +159,18 @@ class GamePlanet
     function search($keywords)
     {
         // Query
+        json_encode(array("message"=>$keywords));
         $query = "SELECT
         p.name, p.id, p.price_per_unit, p.basic_unit, p.tax_percentage, p.developer, p.publisher, p.platform, p.pegi, p.ean, p.stock, p.description
        FROM 
        " . $this->table_name . " p 
        WHERE 
-        p.name LIKE ? OR p.description LIKE ? OR p.developer LIKE ? OR p.publisher LIKE ? p.ean LIKE ?
-        // ORDER BY p.id DESC
+        p.name LIKE '%".$keywords."%' OR p.description LIKE '%".$keywords."%' OR p.developer LIKE '%".$keywords."%'  OR p.publisher LIKE '%".$keywords."%' OR  p.ean LIKE '%".$keywords."%'  
+         ORDER BY p.id DESC
         ";
 
         // Prepare Query
         $stmt = $this->connection->prepare($query);
-
-        // Sanitize
-        $keywords = htmlspecialchars(strip_tags($keywords));
-        $keywords = "%{$keywords}%";
-
-        // Bind
-        $stmt->bindParam(1, $keywords);
-        $stmt->bindParam(2, $keywords);
-        $stmt->bindParam(3, $keywords);
-        $stmt->bindParam(4, $keywords);
-        $stmt->bindParam(5, $keywords);
 
         // Execute query
         $stmt->execute();
