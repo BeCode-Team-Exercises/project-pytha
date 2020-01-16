@@ -3,10 +3,7 @@ import "./css/reset.css";
 import "./css/bootstrap.css";
 import "./css/App.css";
 
-const variabeleBuitenKlasse = "variabele buiten klasse";
-
 class ProductCard extends Component {
-  variabeleBinnenKlasse = "variabele binnen klasse";
 
   constructor(props) {
     super(props);
@@ -27,47 +24,6 @@ class ProductCard extends Component {
       stock: this.state.stock - 1
     }));
   };
-
-  logvariabeleBuitenKlasseArrow = () => {
-    console.log(variabeleBuitenKlasse);
-    const logvariabeleBuitenKlasseArrow2 = () => {
-      console.log(
-        `tweede niveau, buiten variabele, arrow functie: ${variabeleBuitenKlasse}`
-      );
-    };
-    logvariabeleBuitenKlasseArrow2();
-  };
-
-  logvariabeleBuitenKlasseRegular = function() {
-    console.log(variabeleBuitenKlasse);
-    const logvariabeleBuitenKlasseRegular2 = function() {
-      console.log(
-        `tweede niveau, buiten variabele, regular functie: ${variabeleBuitenKlasse}`
-      );
-    };
-    logvariabeleBuitenKlasseRegular2();
-  };
-
-  logvariabeleBinnenKlasseArrow = () => {
-    console.log(this.variabeleBinnenKlasse);
-    const logvariabeleBinnenKlasseArrow2 = () => {
-      console.log(
-        `tweede niveau, binnen variabele, arrow functie: ${this.variabeleBinnenKlasse}`
-      );
-    };
-    logvariabeleBinnenKlasseArrow2();
-  };
-
-          // HIER ZIT HET VERSCHIL TUSSEN ARROW EN REGULAR FUNCTIES: DIE this is niet beschibkaar in tweede niveau van regular functie (wel op het eerste)
-/*   logvariabeleBinnenKlasseRegular = function() {
-    console.log(this.variabeleBinnenKlasse);
-    const constlogvariabeleBinnenKlasseRegular2 = function() {
-      console.log(
-        `tweede niveau, binnen variabele, regular functie: ${this.variabeleBinnenKlasse}`
-      );
-    };
-    constlogvariabeleBinnenKlasseRegular2();
-  }; */
 
   render() {
     const { product_info } = this.props;
@@ -105,9 +61,6 @@ class ProductCard extends Component {
               onClick={this.handleChange}
               style={{ height: "15%", marginBottom: "15%" }}
             />
-{/*             {this.logvariabeleBinnenKlasseRegular()}
- */}            {/*             {console.log(this.variabeleBinnenKlasse)}
-             */}{" "}
           </div>
         </div>
       </div>
