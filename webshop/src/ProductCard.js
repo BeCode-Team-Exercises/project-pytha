@@ -58,16 +58,16 @@ class ProductCard extends Component {
     logvariabeleBinnenKlasseArrow2();
   };
 
-  logvariabeleBinnenKlasseRegular = function() {
+          // HIER ZIT HET VERSCHIL TUSSEN ARROW EN REGULAR FUNCTIES: DIE this is niet beschibkaar in tweede niveau van regular functie (wel op het eerste)
+/*   logvariabeleBinnenKlasseRegular = function() {
     console.log(this.variabeleBinnenKlasse);
     const constlogvariabeleBinnenKlasseRegular2 = function() {
       console.log(
-        // HIER ZIT HET VERSCHIL TUSSEN ARROW EN REGULAR FUNCTIES: DIE this is niet beschibkaar in tweede niveau van regular functie (wel op het eerste)
         `tweede niveau, binnen variabele, regular functie: ${this.variabeleBinnenKlasse}`
       );
     };
     constlogvariabeleBinnenKlasseRegular2();
-  };
+  }; */
 
   render() {
     const { product_info } = this.props;
@@ -105,8 +105,8 @@ class ProductCard extends Component {
               onClick={this.handleChange}
               style={{ height: "15%", marginBottom: "15%" }}
             />
-            {this.logvariabeleBinnenKlasseRegular()}
-            {/*             {console.log(this.variabeleBinnenKlasse)}
+{/*             {this.logvariabeleBinnenKlasseRegular()}
+ */}            {/*             {console.log(this.variabeleBinnenKlasse)}
              */}{" "}
           </div>
         </div>
