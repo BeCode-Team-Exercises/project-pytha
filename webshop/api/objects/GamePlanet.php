@@ -2,8 +2,6 @@
 
 include_once '../config/Database.php';
 
-
-
 class GamePlanet
 {
     // db connection and table name
@@ -135,9 +133,11 @@ class GamePlanet
         //prepare query
         $stmt = $this->connection->prepare($query);
 
+        $this->price_per_unit = htmlspecialchars(strip_tags($this->price_per_unit));
+
         // Bind new values
         $stmt->bindParam(':name', $this->name);
-        $stmt->bindParam(':price_per_unit', $this->price);
+        $stmt->bindParam(':price_per_unit', $this->price_per_unit);
         $stmt->bindParam(':basic_unit', $this->basic_unit);
         $stmt->bindParam(':tax_percentage', $this->tax_percentage);
         $stmt->bindParam(':developer', $this->developer);
@@ -159,13 +159,13 @@ class GamePlanet
     function search($keywords)
     {
         // Query
-        json_encode(array("message"=>$keywords));
+        json_encode(array("message" => $keywords));
         $query = "SELECT
         p.name, p.id, p.price_per_unit, p.basic_unit, p.tax_percentage, p.developer, p.publisher, p.platform, p.pegi, p.ean, p.stock, p.description
        FROM 
        " . $this->table_name . " p 
        WHERE 
-        p.name LIKE '%".$keywords."%' OR p.description LIKE '%".$keywords."%' OR p.developer LIKE '%".$keywords."%'  OR p.publisher LIKE '%".$keywords."%' OR  p.ean LIKE '%".$keywords."%'  
+        p.name LIKE '%" . $keywords . "%' OR p.description LIKE '%" . $keywords . "%' OR p.developer LIKE '%" . $keywords . "%'  OR p.publisher LIKE '%" . $keywords . "%' OR  p.ean LIKE '%" . $keywords . "%'  
          ORDER BY p.id DESC
         ";
 
@@ -174,6 +174,6 @@ class GamePlanet
 
         // Execute query
         $stmt->execute();
-        return $stmt; 
+        return $stmt;
     }
 }
