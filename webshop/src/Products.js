@@ -13,14 +13,13 @@ class Products extends Component {
     };
 
     this.handleInStockChange = this.handleInStockChange.bind(this);
-
   }
-  
-handleInStockChange(order) {
-  this.setState({
-    order: order
-  })
-}
+
+  handleInStockChange(order) {
+    this.setState({
+      order: order
+    });
+  }
 
   changePlatform = event => {
     //    console.log(event.target.value)
@@ -38,17 +37,17 @@ handleInStockChange(order) {
   };
 
   testConfirmPurchaseButtonChangeApi = () => {
-console.log(this.state);
-console.log(this.props);
-
-  }
+    console.log(this.props);
+    console.log(this.state);
+    this.setState((state) => ({order : "testChanged"}))
+  };
 
   render() {
     const { products } = this.props;
 
     const Product = props => {
       const rows = products.map((row, index) => {
-        console.log(this.state.platform);
+        // console.log(this.state.platform);
         if (row.platform == this.state.platform) {
           return (
             /*           <tr key={index}>
