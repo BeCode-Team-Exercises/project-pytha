@@ -4,18 +4,38 @@ import "./css/bootstrap.css";
 import "./css/App.css";
 
 class ProductCard extends Component {
-
   constructor(props) {
     super(props);
+    // EDIT: CAN ONLY USE ONE OF THESE AT A TIME, I BELEIV DUE TO RENDER. WIL RECONFIGURE SO THAT LOCALSTATE TAKES IT VALUE FROM SOMEWHERE ELSE
     // to do: change stock to original stock of object.
     // Also is this the best level for state or do I need to create a state that als ocaptures id of product
-    this.state = {
+    /*     this.state = {
       product_selected: "",
       stock: 10
-    };
+    }; */
+    this.handleChange2 = this.handleChange2.bind(this);
+  }
+  changeHigherState = () => {
+    this.props.addToOrder(this.props.product_info);
+  };
+
+  /*   changeLocalState = () => {
+    this.setState((state, props) => ({
+      product_selected: this.props.product_info.name,
+      stock: this.state.stock - 1
+    }));
+
+  } */
+
+  handleChange2(e) {
+    this.changeHigherState();
+    // EDIT: CAN ONLY USE ONE OF THESE AT A TIME, I BELEIV DUE TO RENDER. WIL RECONFIGURE SO THAT LOCALSTATE TAKES IT VALUE FROM SOMEWHERE ELSE
+    // this.changeLocalState();
+    // NOTE: add check to see if there still is something in stock - at least on the basis of first api-call
+    // NOTE(possible that multiple people order at the same time and that the stock has changed in the meantime, but that's for later)
   }
 
-  handleChange = event => {
+  /*   handleChange = event => {
     // also need to changed displayed stock on the basis of click
     this.setState((state, props) => ({
       product_selected: this.props.product_info.name,
@@ -23,7 +43,7 @@ class ProductCard extends Component {
       // (possible that multiple people order at the same time and that the stock has changed in the meantime, but that's for later)
       stock: this.state.stock - 1
     }));
-  };
+  }; */
 
   render() {
     const { product_info } = this.props;
@@ -58,7 +78,7 @@ class ProductCard extends Component {
               className="btn btn-info"
               type="button"
               value="Submit"
-              onClick={this.handleChange}
+              onClick={this.handleChange2}
               style={{ height: "15%", marginBottom: "15%" }}
             />
           </div>
