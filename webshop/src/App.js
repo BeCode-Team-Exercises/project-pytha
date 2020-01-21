@@ -16,6 +16,7 @@ class App extends Component {
   }
  componentDidMount() {
     fetch("http://project-pytha.local/webshop/api/product/read.php")
+    // note: there's also the possiblity to query specifc products using http://localhost/project-pytha/webshop/api/product/search.php?search=V
       .then(response => response.json())
       .then(data => data.records)
       //.then(data => console.log(data));
@@ -100,7 +101,7 @@ class App extends Component {
 }
  */
     return (
-      <body className="container-fluid">
+      <body className="container-fluid h-100 mh-100">
         {/* to do create head */}
         <Header />
         <Products products={this.state.products_array}/>
