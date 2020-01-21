@@ -1,3 +1,8 @@
+html {
+  height: 100%;
+  max-height: 100%;
+}
+
 * {
   box-sizing: border-box;
   border: 1px solid black;
@@ -8,6 +13,11 @@
   display: flex;
   justify-content: space-between;
   list-style: none;
+}
+
+.platform_buttons {
+display: flex;
+justify-content: space-evenly;
 }
 
 /* .App {
