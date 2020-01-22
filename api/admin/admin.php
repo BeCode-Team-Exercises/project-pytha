@@ -16,8 +16,6 @@ if (array_key_exists($clientIP, $isAllowed)) {
 
         // check user database password hash
         while ($row = $connection->fetch(PDO::FETCH_ASSOC)) {
-            var_dump($row);
-            var_dump(password_verify($_POST['pass'], $row['pass']));
             if (password_verify($_POST['pass'], $row['pass'])) {
 
 
@@ -85,14 +83,14 @@ $key = implode('-', str_split(substr(strtolower(md5(microtime() . rand(1000, 999
             </thead>
             <tbody>
                 <?php
-                // $dataBase = $pdo->query("SELECT * FROM api.`keys`");
-                // if ($dataBase->rowCount() > 0) {
-                //     while ($row = $dataBase->fetch(PDO::FETCH_ASSOC)) {
-                //         echo '<tr><td>' . $row["for"] . '</td><td>' . $row["key"] . '</td></tr>';
-                //     }
-                // } else {
-                //     echo "DATABASE WAS CLEARED";
-                // }
+                $dataBase = $pdo->query("SELECT * FROM api.`keys`");
+                if ($dataBase->rowCount() > 0) {
+                    while ($row = $dataBase->fetch(PDO::FETCH_ASSOC)) {
+                        echo '<tr><td>' . $row["for"] . '</td><td>' . $row["key"] . '</td></tr>';
+                    }
+                } else {
+                    echo "DATABASE WAS CLEARED";
+                }
                 // var_dump($_POST);
                 ?>
             </tbody>
