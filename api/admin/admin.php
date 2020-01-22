@@ -16,7 +16,10 @@ if (array_key_exists($clientIP, $isAllowed)) {
 
         // check user database password hash
         while ($row = $connection->fetch(PDO::FETCH_ASSOC)) {
+            var_dump($row);
+            var_dump(password_verify($_POST['pass'], $row['pass']));
             if (password_verify($_POST['pass'], $row['pass'])) {
+
 
                 if (array_key_exists('for', $_POST)) {
                     $connection = $pdo->prepare("INSERT INTO api.keys (`for`, 'key') VALUES(:for, :key)");
@@ -31,6 +34,11 @@ if (array_key_exists($clientIP, $isAllowed)) {
                 echo 'whoops wrong password! <a href="../admin">go back</a>';
                 die;
             }
+        }
+        if ($row == false) {
+            echo 'user not found ...';
+            echo '<a href="../admin">go back</a>';
+            die;
         }
     }
     // message to clarify that the user did not enter a password
@@ -77,14 +85,19 @@ $key = implode('-', str_split(substr(strtolower(md5(microtime() . rand(1000, 999
             </thead>
             <tbody>
                 <?php
-
-
-                var_dump($_POST);
-
+                // $dataBase = $pdo->query("SELECT * FROM api.`keys`");
+                // if ($dataBase->rowCount() > 0) {
+                //     while ($row = $dataBase->fetch(PDO::FETCH_ASSOC)) {
+                //         echo '<tr><td>' . $row["for"] . '</td><td>' . $row["key"] . '</td></tr>';
+                //     }
+                // } else {
+                //     echo "DATABASE WAS CLEARED";
+                // }
+                // var_dump($_POST);
                 ?>
             </tbody>
         </table>
-        <form method="post">
+        <form action="#" method="post">
             <fieldset>
                 <legend>Add a new api key</legend>
                 <div class="form-row">
