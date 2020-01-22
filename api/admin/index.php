@@ -19,11 +19,21 @@
         <h2 class=" display-4">API admin</h2>
         <p class="lead">This is a simple jumbotron-style component for loggin into the adminpage.</p>
         <hr class="my-4">
-        <p>This page will be useless without the admin password...<p>
+        <p>This page will be useless without the credentials...<p>
                 <form method="POST" action="admin.php" autocomplete="off">
                     <div class="md-form col-md-4">
-                        <input type="text" name="password" id="form1" class="form-control">
-                        <label for="form1">password</label>
+                        <div class="row">
+                            <div class="col">
+                                <div class="md-form mt-0">
+                                    <input type="text" name="user" class="form-control" placeholder="user">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="md-form mt-0">
+                                    <input type="password" name="pass" class="form-control" placeholder="password">
+                                </div>
+                            </div>
+                        </div>
                         <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
                     </div>
                 </form>
