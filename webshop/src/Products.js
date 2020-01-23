@@ -5,6 +5,7 @@ import "./css/bootstrap.css";
 import "./css/App.css";
 
 class Products extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -60,7 +61,10 @@ class Products extends Component {
   handleInStockChange(order) {
     //console.log(order)
     //console.log(this.state.order)
-
+    console.log(order);
+    console.log(order.stock);
+    order.stock = order.stock -1;
+    console.log(order.stock);
     console.log(order);
   const price = order.price_per_unit * (1 + (order.tax_percentage / 100));
   console.log((1 + (order.tax_percentage / 100)))
@@ -145,6 +149,7 @@ let total_order = 0;
   };
 
   render() {
+    
     const { products } = this.props;
 
     const Product = props => {
