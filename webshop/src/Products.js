@@ -59,43 +59,68 @@ class Products extends Component {
 
   handleInStockChange(order) {
     //console.log(order)
-//console.log(this.state.order)
+    //console.log(this.state.order)
 
-if (!this.state.order.some(obj => obj.product_info.id === order.id)) {
-  console.log("tzit er nog niet in")
-/* this.setState({
+    console.log(order);
+  const price = order.price_per_unit * (1 + (order.tax_percentage / 100));
+  console.log((1 + (order.tax_percentage / 100)))
+console.log(price);
+let total_order = 0;
+
+    if (!this.state.order.some(obj => obj.product_info.id === order.id)) {
+      console.log("tzit er nog niet in");
+      /* this.setState({
     order: [...this.state.order, order]
   });  */
-  let order2 = {
-    product_info : order,
-    number : 1
-  }
-  this.setState({
-    order: [...this.state.order, order2]
-  }); 
-}
-else if (this.state.order.some(obj => obj.product_info.id === order.id)) {
-  console.log("tzit er al in")
-/*   console.log(this.state.order.indexOf(order))
+
+      let order2 = {
+        product_info: order,
+        number: 1,
+        cost_product : price
+      };
+      console.log(order2);
+      console.log(order2[0]);
+      let state_array = this.state.order; 
+      let cost_other_products = 0;    
+      state_array.forEach((n) => {
+          cost_other_products += n.cost_product;
+      });
+      console.log(cost_other_products);
+      this.setState({
+        order: [...this.state.order, order2],
+        total_order :  cost_other_products + order2.cost_product
+        // total_order :  total_order + order2.cost_product
+      });
+      
+    } else if (this.state.order.some(obj => obj.product_info.id === order.id)) {
+      console.log("tzit er al in");
+      /*   console.log(this.state.order.indexOf(order))
   let index = (this.state.order.indexOf(order))
   console.log(this.state.order[index]) */
-  let index = this.state.order.findIndex(item => item.product_info === order)
-  console.log(index)
-  let order3 = this.state.order
-  let number2 = this.state.order[index].number
-order3[index] = {
-  product_info : order,
-  number : number2+1
-}
-this.setState({
-  order: order3
-}); 
-
-}
-/*     if (test in order) {
+      let index = this.state.order.findIndex(
+        item => item.product_info === order
+      );
+      console.log(index);
+      let order3 = this.state.order;
+      let number2 = this.state.order[index].number;
+      let price2 = this.state.order[index].cost_product + price;
+      order3[index] = {
+        product_info: order,
+        number: number2 + 1,
+        cost_product : price2
+      };
+      let state_array = this.state.order;      
+      state_array.forEach((n) => {
+          total_order += n.cost_product;
+      });
+      this.setState({
+        order: order3,
+        total_order :  total_order
+      });
+    }
+    /*     if (test in order) {
       console.log("tzit er al in")
     } */
-
   }
 
   changePlatform = event => {
