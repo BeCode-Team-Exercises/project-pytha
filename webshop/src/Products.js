@@ -67,7 +67,7 @@ class Products extends Component {
     console.log(order.stock);
     console.log(order);
   const price = order.price_per_unit * (1 + (order.tax_percentage / 100));
-  console.log((1 + (order.tax_percentage / 100)))
+  console.log((1 + (order.tax_percentage / 100)));
 console.log(price);
 let total_order = 0;
 
@@ -76,7 +76,6 @@ let total_order = 0;
       /* this.setState({
     order: [...this.state.order, order]
   });  */
-
       let order2 = {
         product_info: order,
         number: 1,
@@ -155,7 +154,7 @@ let total_order = 0;
     const Product = props => {
       const rows = products.map((row, index) => {
         // console.log(this.state.platform);
-        if (row.platform == this.state.platform) {
+        if (row.platform == this.state.platform && !row.stock == "0") {
           return (
             /*           <tr key={index}>
         <td>{row.name}</td>
