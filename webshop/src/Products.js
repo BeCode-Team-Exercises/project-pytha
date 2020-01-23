@@ -141,10 +141,32 @@ let total_order = 0;
     })); */
   };
 
-  testConfirmPurchaseButtonChangeApi = () => {
+  confirmPurchaseSendtoApi = () => {
     console.log(this.props);
     console.log(this.state);
-    this.setState(state => ({ orderStatus: "testChanged" }));
+    this.setState(state => ({ orderStatus: "confirmed" }));
+
+    let data = this.state.order.product_info;
+    fetch("http://project-pytha.local/webshop/api/product/update.php", {
+      method: "POST", // or 'PUT'
+      /*        headers: {
+        // "Access-Control-Allow-Origin" : "*",
+        "Content-Type": "application/json; charset=UTF-8",
+        "Access-Control-Allow-Methods": "POST",
+        "Access-Control-Max-Age": "3600",
+        "Access-Control-Allow-Headers" : "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With"
+      },  */
+      body: JSON.stringify(data)
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log("Success:", data);
+      })
+      .catch(error => {
+        console.error("Error:", error);
+      });
+    // checken of het valid json is met output in console hierin te plakken https://jsonlint.com/
+    console.log(JSON.stringify(data));
   };
 
   render() {
@@ -171,8 +193,43 @@ let total_order = 0;
       return rows;
     };
 
+    const ShoppingCart = state => {
+      console.log(this.state.order);
+      const rows = this.state.order.map((row, index) => {
+        let title = row.product_info.name;
+        let amount = row.number;
+return (
+  `${title} aantal: ${amount}`
+  
+);
+      });
+      return `${rows} TOTAL ORDER ${this.state.total_order}`
+
+      //return "test";
+    }
+
     return (
       <React.Fragment>
+        <div className="row text-center platform_buttons h-100 mh-100">
+          <input
+            className="btn btn-info pl-5 pr-5 m-5"
+            type="button"
+            value="PC"
+            onClick={this.changePlatform}
+          />
+          <input
+            className="btn btn-info pl-5 pr-5 m-5"
+            type="button"
+            value="Xbox One"
+            onClick={this.changePlatform}
+          />
+          <input
+            className="btn btn-info pl-5 pr-5 m-5"
+            type="button"
+            value="Playstation 4"
+            onClick={this.changePlatform}
+          />
+        </div>
         <div className="row text-center h-100 mh-100">
           <h2 className="w-100">Products for platform {this.state.platform}</h2>
         </div>
@@ -180,39 +237,20 @@ let total_order = 0;
           {/* note: probably a foreach loop needed with a backstop if there are too many elements to render. Waiting for API-connection*/}
           <Product />
         </article>
+        <ShoppingCart/>
         <div className="row text-center platform_buttons h-100 mh-100">
           <input
-            className="btn btn-info pl-5 pr-5"
+            className="btn btn-info pl-5 pr-5 m-5"
             type="button"
-            value="PC"
-            onClick={this.changePlatform}
+            value="confirm purchase"
+            onClick={this.confirmPurchaseSendtoApi}
           />
-          <input
-            className="btn btn-info pl-5 pr-5"
-            type="button"
-            value="Xbox One"
-            onClick={this.changePlatform}
-          />
-          <input
-            className="btn btn-info pl-5 pr-5"
-            type="button"
-            value="Playstation 4"
-            onClick={this.changePlatform}
-          />
-        </div>
-        <div className="row text-center platform_buttons h-100 mh-100">
-          <input
-            className="btn btn-info pl-5 pr-5 mt-5"
-            type="button"
-            value="test confirm purchase button change api"
-            onClick={this.testConfirmPurchaseButtonChangeApi}
-          />
-          <input
+{/*           <input
             className="btn btn-info pl-5 pr-5 mt-5"
             type="button"
             value="test send method"
             onClick={this.testSendMethod}
-          />
+          /> */}
         </div>
       </React.Fragment>
     );

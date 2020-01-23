@@ -5,14 +5,14 @@ class Header extends Component {
     return (
       <header className="header">
         <h1 className="text-center">Game Planet</h1>
-        <nav className="header-nav">
+{/*         <nav className="header-nav">
           <ul>
             <li>Home</li>
             <li>Products</li>
             <li>My shopping cart</li>
             <li>About Gameplanet</li>
           </ul>
-        </nav>
+        </nav> */}
       </header>
     );
   }
