@@ -106,7 +106,7 @@ class App extends Component {
         <Header />
         <Products products={this.state.products_array}/>
 {/*         <Testje propstestje="abc"/>
- */}        <a>See more products</a>
+ */}        {/*<a>See more products</a>*/}
       </body>
     );
   }
