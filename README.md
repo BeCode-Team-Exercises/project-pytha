@@ -1,3 +1,26 @@
+# simple-order-form
+
+# basic idea
+- have a webshop (henceforth refered to as platform) that integrates with other webshops and adds functionality (time share product with people where you live; purchase in group to get discount)
+- sources of inspiration: drop.com, Ibood.com, Google Flights, crowdfunding, 'groepsaankopen', time shares, 
+- BeCode group project 
+
+## implementation
+### example webshop
+- frond-end: React, Bootstrap 4
+- back-end: API: PHP, MariaDB
+### platform
+
+## to do's
+### example webshop
+- frond-end/back-end: confirm purchase and update stock in database as a minimum to continue with the platform
+### platform
+- frond-end
+
+NOTE: didn't progress as expected due to a combination of illnesses, changing personal priorities (scoring internships) etc.
+
+# ORIGINAL ASSIGNMENT BELOW
+
 # Fullstack-challenge
 
 - Repository: `online-shop`
