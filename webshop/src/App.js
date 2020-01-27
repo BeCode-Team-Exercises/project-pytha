@@ -2,84 +2,44 @@ import React, { Component } from "react";
 import "./css//reset.css";
 import "./css//bootstrap.css";
 import "./css/App.css";
-import Header from "./Header";
 import Products from "./Products";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  // useRouteMatch,
+  // useParams
+} from "react-router-dom";
+
+// important to do/error: about me doesn't't remember products in order across tabs YET it does remember products that are out of stock. Is this even possible? Cookie? 
 
 class App extends Component {
-    // unable to add array to variable. However, able to add to state (what I don't prefer). No such method for props found thus far. Can add to state first, then pass to props and back again if needed?
-   constructor(props) {
+  // unable to add array to variable. However, able to add to state (what I don't prefer). No such method for props found thus far. Can add to state first, then pass to props and back again if needed?
+  constructor(props) {
     super(props);
     this.state = {
-      products_array : [
-      ]
+      products_array: []
     };
   }
- componentDidMount() {
+  componentDidMount() {
     fetch("http://project-pytha.local/webshop/api/product/read.php")
-    // note: there's also the possiblity to query specifc products using http://localhost/project-pytha/webshop/api/product/search.php?search=V
+      // note: there's also the possiblity to query specifc products using http://localhost/project-pytha/webshop/api/product/search.php?search=V
       .then(response => response.json())
       .then(data => data.records)
       //.then(data => console.log(data));
       .then(products_array => this.setState({ products_array }));
-    } 
+  }
 
   render() {
-/*     // note: will need to change this. Tried to preconfigure code before having actual db-connection on the basis of database names. But will still need to handle images (not currently foreseen in db)
-    const products2 = [
-      {
-        name: "diablo",
-        price_per_unit: 1000,
-        tax_percentage: 21,
-        description: "rpg game",
-        developer: "developer",
-        publisher: "publisher",
-        platform: "pc",
-        pegi: 13,
-        stock: 10,
-        active_for_sale: 1
-      },
-      {
-        name: "battlefield",
-        price_per_unit: 50,
-        tax_percentage: 21,
-        description: "shooter",
-        developer: "developer",
-        publisher: "publisher",
-        platform: "xbox",
-        pegi: 18,
-        stock: 10,
-        active_for_sale: 1
-      },
-      {
-        name: "pacman",
-        price_per_unit: 33.99,
-        tax_percentage: 21,
-        description: "platform game",
-        developer: "developer",
-        publisher: "publisher",
-        platform: "pc",
-        pegi: 4,
-        stock: 10,
-        active_for_sale: 1
-      },
-      {
-        name: "tetris",
-        price_per_unit: 52.21,
-        tax_percentage: 21,
-        description: "oldest game, still relevant",
-        developer: "developer",
-        publisher: "publisher",
-        platform: "gameboy",
-        pegi: 0,
-        stock: 10,
-        active_for_sale: 1
-      }
-    ];
 
-    // I can pass array to products this way
-    this.props = products2;
-    console.log(products2);
-    const products = this.props; */
+    // note: had to change location because this was not accessible. Also: accessible with but not without arrow function notation
+  const Products2 = () => {
+      console.log(this.state);
+            return (
+                                     <Products products={this.state.products_array} />     
+           );
+        }
 
     /* trying to add something to props 
     function Welcome(props) {
@@ -94,26 +54,54 @@ class App extends Component {
       );
     } */
 
-
-/* function Testje (props) {
-  const { propstestjeconst } = props.propstestje;
-  return <p> { propstestjeconst }</p>;
-}
- */
     return (
       <body className="container-fluid h-100 mh-100">
         {/* to do create head */}
-        <Header />
-        <Products products={this.state.products_array}/>
-{/*         <Testje propstestje="abc"/>
- */}        {/*<a>See more products</a>*/}
+        <header className="header">
+          <h1 className="text-center">Game Planet</h1>
+          <Router>
+            <nav className="header-nav">
+               <ul>
+                {/*<li>
+                  <Link to="/">Home</Link>
+                </li> */}
+                <li>
+                  <Link to="/products">Products</Link>
+                </li>
+                <li>
+                  <Link to="/about">About</Link>
+                </li>
+              </ul>
+              {/* A <Switch> looks through its children <Route>s and
+              renders the first one that matches the current URL.*/}
+              <Switch>
+                <Route path="/about">
+                  <About />
+                </Route>
+                <Route path="/products">
+                  <Products2 />
+                </Route>
+                {/* <Route path="/">
+                  <Home />
+                </Route> */}
+              </Switch>
+            </nav>
+          </Router>
+        </header>
+{/*         <Products products={this.state.products_array} />
+ */}        {/*         <Testje propstestje="abc"/>
+         */}{" "}
       </body>
     );
-  }
-}
+    
+    // function Home() {
+    //   return <h2>Home</h2>;
+    // }
 
+    function About() {
+      return <h2>About</h2>;
+    }
+  
+}
+} 
 export default App;
-
-{
-  /* note: may want to use state at products level to dynamically display type of products */
-}

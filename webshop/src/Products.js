@@ -17,47 +17,6 @@ class Products extends Component {
     this.handleInStockChange = this.handleInStockChange.bind(this);
   }
 
-  // note: just created button to test database connection. Will need to be moved to confirm order
-  // IMPORTANT: wil niet ambetant doen, maar die post creeert een nieuwe rij, wat prima is om nieuwe games toe te voegen. Maar als het gaat over de Stock van een game te updaten, is het mogelijk niet de juiste methode.
-  testSendMethod = () => {
-    console.log("test knop");
-
-    const data = {
-      name: "Jasper's Crazy Adventures abc",
-      price_per_unit: 59,
-      publisher: "Dysfunctional Analyzers!",
-      developer: "Hobo's In Space!",
-      platform: "PC",
-      pegi: "18",
-      ean: "0000000000003",
-      stock: "5",
-      description:
-        "Go on a crazy adventure with Jasper the Jack of All Spades! Control your poop levels!"
-    };
-
-    // note: PUT doenst't work as a standard php method, so post is used
-    fetch("http://project-pytha.local/webshop/api/product/create.php", {
-      method: "POST", // or 'PUT'
-      /*        headers: {
-        // "Access-Control-Allow-Origin" : "*",
-        "Content-Type": "application/json; charset=UTF-8",
-        "Access-Control-Allow-Methods": "POST",
-        "Access-Control-Max-Age": "3600",
-        "Access-Control-Allow-Headers" : "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With"
-      },  */
-      body: JSON.stringify(data)
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log("Success:", data);
-      })
-      .catch(error => {
-        console.error("Error:", error);
-      });
-    // checken of het valid json is met output in console hierin te plakken https://jsonlint.com/
-    console.log(JSON.stringify(data));
-  };
-
   handleInStockChange(order) {
     //console.log(order)
     //console.log(this.state.order)
@@ -133,12 +92,6 @@ let total_order = 0;
     this.setState((state, props) => ({
       platform: value
     }));
-
-    /*     this.setState((state, props) => ({
-      // to do: add check to see if there still is something in stock - at least on the basis of first api-call
-      // (possible that multiple people order at the same time and that the stock has changed in the meantime, but that's for later)
-      platform: event.value
-    })); */
   };
 
   confirmPurchaseSendtoApi = () => {
@@ -146,6 +99,8 @@ let total_order = 0;
     console.log(this.state);
     this.setState(state => ({ orderStatus: "confirmed" }));
 
+        // note: PUT doenst't work as a standard php method, so post is used
+          // IMPORTANT: wil niet ambetant doen, maar die post creeert een nieuwe rij, wat prima is om nieuwe games toe te voegen. Maar als het gaat over de Stock van een game te updaten, is het mogelijk niet de juiste methode.
     let data = this.state.order.product_info;
     fetch("http://project-pytha.local/webshop/api/product/update.php", {
       method: "POST", // or 'PUT'
@@ -245,12 +200,6 @@ return (
             value="confirm purchase"
             onClick={this.confirmPurchaseSendtoApi}
           />
-{/*           <input
-            className="btn btn-info pl-5 pr-5 mt-5"
-            type="button"
-            value="test send method"
-            onClick={this.testSendMethod}
-          /> */}
         </div>
       </React.Fragment>
     );
